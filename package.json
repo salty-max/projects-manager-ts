@@ -1,0 +1,19 @@
+{
+  "name": "projects-manager-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "eslint": "^7.21.0",
+    "lite-server": "^2.6.1"
+  },
+  "scripts": {
+    "start": "lite-server -c bs-config.json",
+    "build": "tsc -w"
+  },
+  "dependencies": {
+    "chota": "^0.8.0"
+  }
+}
