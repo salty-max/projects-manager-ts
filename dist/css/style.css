@@ -117,16 +117,16 @@ button:active {
   border-radius: var(--radius);
 }
 
-.projects li h2 {
+.projects li h3 {
   color: var(--color-error-light);
   margin: 0.5rem 0;
 }
 
-#done-projects li h2 {
+#done-projects li h3 {
   color: var(--color-primary);
 }
 
-.projects li h3 {
+.projects li h4 {
   color: var(--color-grey);
   font-size: 1rem;
 }
@@ -135,7 +135,7 @@ button:active {
   margin: 0;
 }
 
-.droppable {
+#active-projects .droppable {
   background: #ffe3ee;
 }
 
