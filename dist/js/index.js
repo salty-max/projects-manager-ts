@@ -93,6 +93,23 @@ class Component {
         this.hostElement.insertAdjacentElement(insertAtStart ? 'afterbegin' : 'beforeend', this.element);
     }
 }
+class ProjectItem extends Component {
+    constructor(parentId, project) {
+        super('single-project', parentId, false, project.id);
+        this.project = project;
+        this.configure();
+        this.renderContent();
+    }
+    get persons() {
+        return this.project.people === 1 ? '1 person' : `${this.project.people} persons`;
+    }
+    configure() { }
+    renderContent() {
+        this.element.querySelector('h3').textContent = this.project.title;
+        this.element.querySelector('h4').textContent = `${this.persons} assigned`;
+        this.element.querySelector('p').textContent = this.project.description;
+    }
+}
 class ProjectList extends Component {
     constructor(type) {
         super('project-list', 'app', false, `${type}-projects`);
@@ -124,9 +141,7 @@ class ProjectList extends Component {
         const list = document.getElementById(`${this.type}-projects-list`);
         list.innerHTML = '';
         for (const project of this.assignedProjects) {
-            const listItem = document.createElement('li');
-            listItem.textContent = project.title;
-            list.appendChild(listItem);
+            new ProjectItem(list.id, project);
         }
     }
 }
