@@ -8,7 +8,7 @@ interface Validatable {
   max?: number;
 }
 
-function validate(v: Validatable) {
+function validate(v: Validatable): boolean {
   let isValid = true;
 
   if (v.required) {
@@ -39,6 +39,35 @@ function Autobind(_: any, __: string, descriptor: PropertyDescriptor): PropertyD
       return method.bind(this);
     },
   };
+}
+
+class ProjectList {
+  templateElement: HTMLTemplateElement;
+  hostElement: HTMLDivElement;
+  element: HTMLElement;
+
+  constructor(private type: 'active' | 'done') {
+    this.templateElement = document.getElementById('project-list')! as HTMLTemplateElement;
+    this.hostElement = document.getElementById('app')! as HTMLDivElement;
+
+    const importedNode = document.importNode(this.templateElement.content, true);
+
+    this.element = importedNode.firstElementChild as HTMLElement;
+    this.element.id = `${this.type}-projects`;
+
+    this.attach();
+    this.renderContent();
+  }
+
+  private renderContent(): void {
+    const listId = `${this.type}-projects-list`;
+    this.element.querySelector('ul')!.id = listId;
+    this.element.querySelector('h2')!.textContent = `${this.type.toUpperCase()} PROJECTS`;
+  }
+
+  private attach(): void {
+    this.hostElement.insertAdjacentElement('beforeend', this.element);
+  }
 }
 
 class ProjectInput {
@@ -85,14 +114,14 @@ class ProjectInput {
     }
   }
 
-  private clearInputs() {
+  private clearInputs(): void {
     this.titleInputElement.value = '';
     this.descriptionInputElement.value = '';
     this.peopleInputElement.value = '';
   }
 
   @Autobind
-  private handleSubmit(e: Event) {
+  private handleSubmit(e: Event): void {
     e.preventDefault();
     const values = this.gatherUserInput();
     if (Array.isArray(values)) {
@@ -102,13 +131,15 @@ class ProjectInput {
     }
   }
 
-  private configure() {
+  private configure(): void {
     this.formElement.addEventListener('submit', this.handleSubmit);
   }
 
-  private attach() {
+  private attach(): void {
     this.hostElement.insertAdjacentElement('afterbegin', this.formElement);
   }
 }
 
 const projectInput = new ProjectInput();
+const activeProjects = new ProjectList('active');
+const doneProjects = new ProjectList('done');

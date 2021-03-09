@@ -8,6 +8,7 @@
   --color-error: #f53b57;
   --color-error-light: #ef5777;
   --color-primary: #0fbcf9;
+  --radius: 0.625rem;
 }
 
 * {
@@ -20,6 +21,7 @@ html {
 
 body {
   margin: 0;
+  padding: 2rem;
   color: var(--color-dark);
   background-color: var(--color-lighter);
 }
@@ -42,7 +44,7 @@ textarea {
   width: 100%;
   max-width: 30rem;
   border: 1px solid var(--color-light);
-  border-radius: 0.375rem;
+  border-radius: var(--radius);
 }
 
 input:focus,
@@ -59,7 +61,7 @@ button {
   cursor: pointer;
   color: white;
   padding: 0.75rem 1rem;
-  border-radius: 0.375rem;
+  border-radius: var(--radius);
 }
 
 button:focus {
@@ -75,6 +77,8 @@ button:active {
 .projects {
   margin: 1rem;
   border: 1px solid var(--color-error-light);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .projects header {
@@ -85,11 +89,11 @@ button:active {
   align-items: center;
 }
 
-#finished-projects {
+#done-projects {
   border-color: var(--color-primary);
 }
 
-#finished-projects header {
+#done-projects header {
   background: var(--color-primary);
 }
 
@@ -115,7 +119,7 @@ button:active {
   margin: 0.5rem 0;
 }
 
-#finished-projects li h2 {
+#done-projects li h2 {
   color: var(--color-primary);
 }
 
@@ -132,7 +136,7 @@ button:active {
   background: #ffe3ee;
 }
 
-#finished-projects .droppable {
+#done-projects .droppable {
   background: #d6e1ff;
 }
 
@@ -140,6 +144,6 @@ button:active {
   margin: 1rem;
   padding: 1rem;
   background: white;
-  border-radius: 0.375rem;
+  border-radius: var(--radius);
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.16);
 }
