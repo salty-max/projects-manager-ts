@@ -17,7 +17,7 @@ export class ProjectList extends Component<HTMLDivElement, HTMLElement> implemen
   }
 
   @Autobind
-  dragOverHandler(event: DragEvent) {
+  dragOverHandler(event: DragEvent): void {
     if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
       event.preventDefault();
       const listEl = this.element.querySelector('ul')! as HTMLUListElement;
